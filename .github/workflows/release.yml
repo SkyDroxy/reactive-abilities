@@ -1,0 +1,49 @@
+name: Tag and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tag-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run update-version script
+        run: node update-version.js
+
+      - name: Get new version
+        id: get_version
+        run: echo "version=$(jq -r .version module.json)" >> $GITHUB_OUTPUT
+
+      - name: Commit version bump
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add module.json
+          git commit -m "Bump version to ${{ steps.get_version.outputs.version }}" || echo "No changes to commit"
+          git push
+
+      - name: Create tag
+        run: |
+          git tag v${{ steps.get_version.outputs.version }}
+          git push origin v${{ steps.get_version.outputs.version }}
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.get_version.outputs.version }}
+          files: reactive-abilities.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
