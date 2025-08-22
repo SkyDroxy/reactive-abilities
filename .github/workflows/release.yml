@@ -29,21 +29,21 @@ jobs:
 
       - name: Commit version bump
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add module.json
-          git commit -m "Bump version to ${{ steps.get_version.outputs.version }}" || echo "No changes to commit"
-          git push
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git add module.json
+            git commit -m "Bump version to ${{ steps.get_version.outputs.version }}" || echo "No changes to commit"
+            git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/SkyDroxy/reactive-abilities.git HEAD:main
 
       - name: Create tag
         run: |
-          git tag v${{ steps.get_version.outputs.version }}
-          git push origin v${{ steps.get_version.outputs.version }}
+            git tag v${{ steps.get_version.outputs.version }}
+            git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/SkyDroxy/reactive-abilities.git v${{ steps.get_version.outputs.version }}
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.get_version.outputs.version }}
           files: reactive-abilities.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          env:
+            GITHUB_TOKEN: ${{ secrets.GH_PAT }}
