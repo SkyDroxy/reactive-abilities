@@ -1,0 +1,69 @@
+{
+  "id": "reactive-abilities",
+  "title": "Reactive Abilities",
+  "description": "FoundryVTT module for implementing reactive abilities in D&amp;D5e. This module allows characters to use their abilities in response to specific triggers.",
+
+  "authors": [
+    {
+      "name": "SkyDroxy",
+      "url": "https://github.com/SkyDroxy",
+      "flags": {}
+    }
+  ],
+
+  "version": "0.0.1",
+  "url": "https://github.com/SkyDroxy/reactive-abilities",
+  "manifest": "https://github.com/SkyDroxy/reactive-abilities/releases/latest/download/module.json",
+  "download": "https://github.com/SkyDroxy/reactive-abilities/releases/download/v0.0.1/reactive-abilities.zip",
+
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "manifest": "https://raw.githubusercontent.com/foundryvtt/dnd5e/master/system.json",
+        "compatibility": {
+          "verified": "5.0.4",
+          "minimum": "5.0.0"
+        }
+      }
+    ]
+  },
+
+  "esmodules": ["scripts/main.js"],
+  "styles": ["css/sp-styles.css"],
+  "packs": [
+    {
+      "name": "module-sample-abilities",
+      "label": "Sample Reactive Abilities",
+      "path": "packs/items",
+      "type": "Item",
+      "system": "dnd5e",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json",
+      "flags": {}
+    }
+  ],
+  "media": []
+}
