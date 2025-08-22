@@ -45,5 +45,5 @@ jobs:
         with:
           tag_name: v${{ steps.get_version.outputs.version }}
           files: reactive-abilities.zip
-          env:
-            GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
