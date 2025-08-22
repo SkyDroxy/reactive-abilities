@@ -9,10 +9,10 @@
       "flags": {}
     }
   ],
-  "version": "0.0.4",
+  "version": "0.0.5",
   "url": "https://github.com/SkyDroxy/reactive-abilities",
   "manifest": "https://github.com/SkyDroxy/reactive-abilities/releases/latest/download/module.json",
-  "download": "https://github.com/SkyDroxy/reactive-abilities/releases/download/v0.0.4/reactive-abilities.zip",
+  "download": "https://github.com/SkyDroxy/reactive-abilities/releases/download/v0.0.5/reactive-abilities.zip",
   "compatibility": {
     "minimum": "13",
     "verified": "13"

@@ -19,3 +19,24 @@ fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
 
 console.log(`Version mise à jour à ${newVersion}`);
 console.log(`Lien de téléchargement mis à jour : ${data.download}`);
+// Création du zip du projet
+const archiver = require('archiver');
+
+const outputZip = path.join(__dirname, 'reactive-abilities.zip');
+const output = fs.createWriteStream(outputZip);
+const archive = archiver('zip', { zlib: { level: 9 } });
+
+output.on('close', () => {
+	console.log(`Archive créée : ${outputZip} (${archive.pointer()} octets)`);
+});
+
+archive.on('error', err => { throw err; });
+
+archive.pipe(output);
+
+// Exclure .git, le script lui-même et le zip
+archive.glob('**/*', {
+	ignore: ['.git/**', 'update-version.js', 'reactive-abilities.zip']
+});
+
+archive.finalize();
