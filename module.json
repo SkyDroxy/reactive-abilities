@@ -36,7 +36,7 @@
   },
 
   "esmodules": ["scripts/main.js"],
-  "styles": ["css/sp-styles.css"],
+  "styles": ["css/style.css"],
   "packs": [
     {
       "name": "module-sample-abilities",
