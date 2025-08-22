@@ -1,0 +1,14 @@
+{
+  "name": "reactive-abilities",
+  "version": "0.0.3",
+  "description": "FoundryVTT module for implementing reactive abilities in D&D5e.",
+  "main": "scripts/main.js",
+  "scripts": {
+    "build": "node update-version.js"
+  },
+  "author": "SkyDroxy",
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "^5.3.2"
+  }
+}
